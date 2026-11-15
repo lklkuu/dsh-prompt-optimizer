@@ -47,7 +47,7 @@
 ## 卸载
 
 ```bash
-dsh plugin --profile desktop remove dsh-prompt-optimizer
+dsh plugin --profile desktop remove @lklkuu/dsh-prompt-optimizer
 ```
 
 或在本机 profile 的插件管理里停用该条目。

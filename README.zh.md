@@ -22,7 +22,7 @@
 ## 安装
 
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer
+dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer
 ```
 
 或从 Release 里的 tarball 安装：
@@ -89,7 +89,7 @@ npm test
 ## 卸载
 
 ```bash
-dsh plugin --profile desktop remove dsh-prompt-optimizer
+dsh plugin --profile desktop remove @lklkuu/dsh-prompt-optimizer
 ```
 
 ## 许可

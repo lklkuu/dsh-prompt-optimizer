@@ -23,7 +23,7 @@
  */
 
 /** Loader-diagnostic plugin name; must equal the package name. */
-export const name = 'dsh-prompt-optimizer'
+export const name = '@lklkuu/dsh-prompt-optimizer'
 
 /**
  * Services that must exist before this plugin loads.

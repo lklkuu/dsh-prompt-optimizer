@@ -1,7 +1,9 @@
 {
-  "name": "dsh-prompt-optimizer",
+  "name": "@lklkuu/dsh-prompt-optimizer",
   "version": "0.1.0",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "index.js",
   "description": "在对话框右侧加一个「优化」按钮，用当前模型按 prompt-optimizer 的「基础优化」模板改写草稿，结果直接写回输入框。",

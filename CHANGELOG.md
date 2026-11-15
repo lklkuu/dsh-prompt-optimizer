@@ -15,6 +15,8 @@
   做 405 / 415 / 400 输入守卫与统一错误信封。
 - 中文与英文两套文案。
 - 15 个离线测试，覆盖纯函数、host 接线、浏览器半模块加载与槽位注册。
+- npm 包名 `@lklkuu/dsh-prompt-optimizer`（`dsh-prompt-optimizer` 已被他人占用），
+  安装可用 `dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer`。
 
 ### 说明
 

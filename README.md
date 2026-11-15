@@ -25,13 +25,13 @@ usage only — no code was copied.
 ## Install
 
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer
+dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer
 ```
 
-Or from the Release tarball:
+Or straight from this repository (works before the npm release is live):
 
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/releases/download/v0.1.0/dsh-prompt-optimizer-0.1.0.tgz
+dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer
 ```
 
 Restart DSH (or reload the page) so the client module loads.
@@ -95,7 +95,7 @@ Three layers, fully offline — no installs, no network:
 ## Uninstall
 
 ```bash
-dsh plugin --profile desktop remove dsh-prompt-optimizer
+dsh plugin --profile desktop remove @lklkuu/dsh-prompt-optimizer
 ```
 
 ## License

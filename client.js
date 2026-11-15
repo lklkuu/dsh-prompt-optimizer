@@ -10,7 +10,7 @@
  *   写回去  props.inputActions.setDraft(text)
  */
 window.__ModuleLoader__.load({
-  id: 'dsh-prompt-optimizer',
+  id: '@lklkuu/dsh-prompt-optimizer',
   factory: (require) => {
     var module = { exports: {} };
     var exports = module.exports;
