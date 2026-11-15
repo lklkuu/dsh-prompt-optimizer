@@ -23,6 +23,8 @@ import {
   apply as hostApply,
 } from '../index.js'
 
+const PKG_NAME = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).name;
+
 const SELF = 'http://127.0.0.1/api/prompt-optimizer/optimize'
 
 const postBody = (body, headers = { 'content-type': 'application/json' }) =>
@@ -31,7 +33,7 @@ const postBody = (body, headers = { 'content-type': 'application/json' }) =>
 /* ------------------------------------------------------------------ layer 1 */
 
 test('manifest keeps the identifiers the host reads', () => {
-  assert.equal(name, 'dsh-prompt-optimizer')
+  assert.equal(name, PKG_NAME)
   assert.deepEqual(inject, ['llm'])
   assert.equal(OPTIMIZE_PATH, '/api/prompt-optimizer/optimize')
 })
@@ -250,7 +252,7 @@ function loadClientModule() {
 
 test('client half loads under the module loader contract', () => {
   const { definition, module } = loadClientModule()
-  assert.equal(definition.id, 'dsh-prompt-optimizer')
+  assert.equal(definition.id, PKG_NAME)
   assert.equal(typeof module.apply, 'function')
   assert.deepEqual(module.inject, ['slots', 'locale'])
 })

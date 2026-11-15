@@ -1,5 +1,7 @@
 # dsh-prompt-optimizer
 
+**English** | [简体中文](./README.zh.md)
+
 Adds an **Optimize** button to the DeepSeek Harness composer: it hands the current draft to **the model
 you already selected**, rewrites it with the "basic optimization" prompt from
 [prompt-optimizer](https://github.com/linshenkx/prompt-optimizer), and writes the result straight back

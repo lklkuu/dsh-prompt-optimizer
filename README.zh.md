@@ -1,5 +1,7 @@
 # dsh-prompt-optimizer
 
+[English](./README.md) | **简体中文**
+
 给 DeepSeek Harness 的对话框加一个「优化」按钮：把输入框里的草稿交给**你当前选中的模型**，按
 [prompt-optimizer](https://github.com/linshenkx/prompt-optimizer) 的「基础优化」模板改写，然后把
 结果直接写回输入框。
