@@ -1,57 +1,65 @@
+![A loose draft on the left, a star-shaped Optimize button in the composer, and a structured prompt on the right](preview.svg)
+
 # dsh-prompt-optimizer
 
-在 DeepSeek Harness 的对话框右侧加一个「优化」按钮：拿输入框里的草稿，交给当前选中的模型，按
-[linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer) 的「基础优化」
-（`user-optimize/user-prompt-basic`，v2.0.0）模板改写，然后把结果写回输入框。
+Adds an **Optimize** button to the right of the DeepSeek Harness composer: it takes the draft
+you have typed, hands it to the model currently selected in the conversation, rewrites it with the
+"basic optimize" template from
+[linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer)
+(`user-optimize/user-prompt-basic`, v2.0.0), and writes the result straight back into the composer.
 
-不安装 prompt-optimizer 本体，不依赖 Docker / Bun / 浏览器扩展，也不需要任何额外的 API Key ——
-用的是你在 DSH 里已经选好的那个模型。
+It does not install prompt-optimizer itself, and it needs no Docker, Bun, browser extension, or
+extra API key — it uses the model you already have selected in DSH.
 
-## 用法
+## Usage
 
-1. 在输入框里写点东西（空的时候按钮是灰的）。
-2. 点「优化」。按钮变成「优化中…」，再点一次可以取消。
-3. 结果直接替换输入框内容，旁边出现「已优化 · 撤销」，点一下回到原文。
+1. Type something into the composer (the button is greyed out while it is empty).
+2. Click **Optimize**. The button turns into "Optimizing…"; click it again to cancel.
+3. The result replaces the composer content, and an "Optimized · Undo" chip appears next to it —
+   one click restores the original text.
 
-超过 150 秒没返回会自己取消并提示超时。
+If no answer comes back within 150 seconds the request cancels itself and reports a timeout.
 
-## 它做了什么
+## What it does
 
-| 环节 | 实现 |
+| Step | Implementation |
 | --- | --- |
-| 按钮位置 | `conversation.input.right` 槽位，`order: 12`（在图片提供方 10 与 Codex 配额 15 之间） |
-| 读草稿 | 槽位标准 prop `useInput(s => s.draft)` |
-| 调模型 | host 半 `POST /api/prompt-optimizer/optimize` → `ctx.get('llm').stream()` |
-| 选模型 | `agentDefaultModel.currentSelection()`，即你当前对话选中的模型 |
-| 写回 | `inputActions.setDraft(text)` + `persistDraft()` |
+| Button placement | `conversation.input.right` slot, `order: 12` (between the image-provider pill at 10 and the Codex quota at 15) |
+| Read the draft | The slot's standard prop `useInput(s => s.draft)` |
+| Call the model | Host half `POST /api/prompt-optimizer/optimize` → `ctx.get('llm').stream()` |
+| Pick the model | `agentDefaultModel.currentSelection()`, i.e. the model selected for this conversation |
+| Write back | `inputActions.setDraft(text)` + `persistDraft()` |
 
-提示词就是 linshenkx/prompt-optimizer 的原文，唯一改动是把模板里的 Mustache
-`{{#helpers.toJson}}{{{originalPrompt}}}{{/helpers.toJson}}` 换成本地 `JSON.stringify(draft)`
-—— 效果一样，但不需要引入模板引擎。
+The prompt is the linshenkx/prompt-optimizer text verbatim; the only change is replacing the
+Mustache placeholder `{{#helpers.toJson}}{{{originalPrompt}}}{{/helpers.toJson}}` with a local
+`JSON.stringify(draft)` — same effect, without pulling in a template engine.
 
-这一路是**旁路调用**，不进会话记录，不消耗会话轮次，不改动任何会话文件。
+The call runs **out of band**: it is not appended to the session transcript, does not consume a
+conversation turn, and does not touch any session file.
 
-## 配置
+## Configuration
 
-没有配置项。想做更激进的改写（分析型、结构化、面向输出格式等），改 `index.js` 里的
-`SYSTEM_PROMPT` 与 `renderUserPrompt` 即可 —— 上游仓库有 144 个模板可选。
+There are no settings. To try a more aggressive rewrite (analytical, structured, output-format
+oriented, …), edit `SYSTEM_PROMPT` and `renderUserPrompt` in `index.js` — the upstream repository
+ships 144 templates to choose from.
 
-## 已知边界
+## Known limits
 
-- 只在**有浏览器界面**的 profile 生效（desktop / web）。headless、tui、sdk 下 host 半照常加载，
-  但 `/api` 路由不注册，前端也拿不到按钮。
-- 依赖宿主的 `llm`、`agentDefaultModel`、`connection` 三个服务；任何一项缺失时按钮不渲染或报错，
-  不会静默失败。
-- `inputActions.setDraft` 会整段替换草稿，光标位置不保留。
+- Only works in a profile **with a browser UI** (desktop / web). Under headless, tui and sdk the
+  host half still loads, but the `/api` route is never registered and the front end has no button.
+- Depends on the host's `llm`, `agentDefaultModel` and `connection` services; if one is missing the
+  button is not rendered or an error is reported — it never fails silently.
+- `inputActions.setDraft` replaces the whole draft, so the caret position is not preserved.
 
-## 卸载
+## Uninstall
 
 ```bash
 dsh plugin --profile desktop remove @lklkuu/dsh-prompt-optimizer
 ```
 
-或在本机 profile 的插件管理里停用该条目。
+Or disable the entry in the plugin manager of your local profile.
 
-## 许可
+## License
 
-MIT。提示词模板来自 linshenkx/prompt-optimizer（AGPL-3.0），此处仅作提示词文本引用。
+MIT. The prompt template comes from linshenkx/prompt-optimizer (AGPL-3.0); only the prompt text is
+quoted here.

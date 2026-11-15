@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300">
+  <rect width="640" height="300" rx="20" fill="#f3f5f9"/>
+
+  <!-- left: the loose draft -->
+  <rect x="48" y="82" width="248" height="136" rx="16" fill="#ffffff" stroke="#b7c3d2" stroke-width="2"/>
+  <rect x="72" y="108" width="150" height="8" rx="4" fill="#d6dde7"/>
+  <rect x="72" y="130" width="196" height="8" rx="4" fill="#e0e5ed"/>
+  <rect x="72" y="152" width="112" height="8" rx="4" fill="#e0e5ed"/>
+  <rect x="72" y="174" width="164" height="8" rx="4" fill="#e8edf3"/>
+  <circle cx="262" cy="192" r="16" fill="#e7edf5"/>
+  <path d="M262.00 182.00 L264.25 188.91 L271.51 188.91 L265.63 193.18 L267.88 200.09 L262.00 195.82 L256.12 200.09 L258.37 193.18 L252.49 188.91 L259.75 188.91Z" fill="none" stroke="#63758c" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- middle: the action -->
+  <path d="M312 150h24" fill="none" stroke="#9aa9bb" stroke-width="2" stroke-linecap="round"/>
+  <path d="M330 144l6 6-6 6" fill="none" stroke="#9aa9bb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- right: the structured prompt -->
+  <rect x="352" y="82" width="240" height="136" rx="16" fill="#ffffff" stroke="#247bbf" stroke-width="2"/>
+  <circle cx="376" cy="110" r="4" fill="#247bbf"/>
+  <rect x="390" y="106" width="128" height="8" rx="4" fill="#c8d6e5"/>
+  <circle cx="376" cy="134" r="4" fill="#247bbf"/>
+  <rect x="390" y="130" width="164" height="8" rx="4" fill="#d6e0ea"/>
+  <circle cx="376" cy="158" r="4" fill="#247bbf"/>
+  <rect x="390" y="154" width="146" height="8" rx="4" fill="#d6e0ea"/>
+  <circle cx="376" cy="182" r="4" fill="#247bbf"/>
+  <rect x="390" y="178" width="112" height="8" rx="4" fill="#e0e8f0"/>
+  <circle cx="568" cy="192" r="16" fill="#247bbf"/>
+  <path d="M568.00 182.00 L570.25 188.91 L577.51 188.91 L571.63 193.18 L573.88 200.09 L568.00 195.82 L562.12 200.09 L564.37 193.18 L558.49 188.91 L565.75 188.91Z" fill="#ffffff"/>
+
+  <!-- orbit ring: the call goes out and comes back -->
+  <path d="M176 236c60 34 228 34 288 0" fill="none" stroke="#c3cede" stroke-width="2" stroke-linecap="round" stroke-dasharray="7 9"/>
+</svg>

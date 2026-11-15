@@ -28,7 +28,7 @@ dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer
 或从 Release 里的 tarball 安装：
 
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/releases/download/v0.1.0/dsh-prompt-optimizer-0.1.0.tgz
+dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/releases/latest/download/dsh-prompt-optimizer.tgz
 ```
 
 安装后需要重启 DSH（或刷新页面）让客户端模块加载。

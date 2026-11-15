@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "title": "提示词优化",
+    "description": "在对话框右侧加一个星形「优化」按钮：输入框有草稿时点它，当前选中的模型会按 linshenkx/prompt-optimizer 的「基础优化」模板改写这段提示词，结果直接写回输入框，旁边出现「已优化 · 撤销」可一键还原。再点一次按钮可取消，超过 150 秒自动超时。用的是你已选好的模型，不需要额外 API Key，也不会写进会话记录。输入框为空时按钮是灰的；只在有浏览器界面的 profile（desktop / web）显示。",
+    "detail": "docs/DETAIL.zh.md"
+  },
   "btn.label": "优化",
   "btn.title": "用 prompt-optimizer 的「基础优化」改写这段提示词",
   "btn.running": "优化中…",

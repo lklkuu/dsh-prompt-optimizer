@@ -2,6 +2,24 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [0.1.1] - 2026-11-15
+
+### 修复
+
+- 插件介绍页（详情页）此前总是显示英文 README，与界面语言无关。原因是包内没有声明
+  `meta.detail`，DSH 只能回退到写死的 `README.md`；而 `README.zh.md` 不在它的候选名单里，
+  永远不会被选中。
+- 现在 `locale/en.json` 与 `locale/zh.json` 各自声明了 `meta`（`title` / `description` /
+  `detail`），中文界面读 `docs/DETAIL.zh.md`，英文界面读 `docs/DETAIL.md`，日文等其它语言
+  按 DSH 的语言回退链落到英文文档。
+
+### 新增
+
+- `docs/DETAIL.zh.md`（中文版详情文档），`docs/DETAIL.md` 改写为英文版，两份内容一一对应。
+- `docs/preview.svg`（640×300，无文字、无脚本、无外部资源，明暗主题都可读），
+  两张详情文档顶部各引用它一次。
+- 插件列表里的名称与一句话说明改为随界面语言切换，不再显示裸包名。
+
 ## [0.1.0] - 2026-11-15
 
 首个发布版本。

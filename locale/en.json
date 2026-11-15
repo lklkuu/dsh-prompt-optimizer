@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "title": "Prompt Optimizer",
+    "description": "Adds a star-shaped Optimize button to the right of the composer: with a draft in the input, one click has the model currently selected for this conversation rewrite it using the \"basic optimize\" template from linshenkx/prompt-optimizer, and the result is written straight back into the composer with an \"Optimized · Undo\" chip to restore the original. Click again to cancel; it times out after 150 seconds. It uses the model you already selected, needs no extra API key, and never enters the session transcript. The button is greyed out while the draft is empty, and it only appears in a profile with a browser UI (desktop / web).",
+    "detail": "docs/DETAIL.md"
+  },
   "btn.label": "Optimize",
   "btn.title": "Rewrite this prompt with prompt-optimizer basic-optimize",
   "btn.running": "Optimizing…",

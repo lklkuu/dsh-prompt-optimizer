@@ -28,10 +28,10 @@ usage only — no code was copied.
 dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer
 ```
 
-Or straight from this repository (works before the npm release is live):
+Or from the tarball attached to the latest Release:
 
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer
+dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/releases/latest/download/dsh-prompt-optimizer.tgz
 ```
 
 Restart DSH (or reload the page) so the client module loads.
