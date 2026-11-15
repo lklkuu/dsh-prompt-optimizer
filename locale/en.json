@@ -1,0 +1,13 @@
+{
+  "btn.label": "Optimize",
+  "btn.title": "Rewrite this prompt with prompt-optimizer basic-optimize",
+  "btn.running": "Optimizing…",
+  "btn.cancel": "Click to cancel",
+  "btn.empty": "The composer is empty — write something first.",
+  "btn.undo": "Optimized · Undo",
+  "btn.undoTitle": "Restore the original draft",
+  "err.http": "Request failed (HTTP {status})",
+  "err.network": "Cannot reach the local service: {message}",
+  "err.unknown": "Optimize failed: {message}",
+  "err.aborted": "Cancelled"
+}

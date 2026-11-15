@@ -1,0 +1,65 @@
+{
+  "name": "dsh-prompt-optimizer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "description": "在对话框右侧加一个「优化」按钮，用当前模型按 prompt-optimizer 的「基础优化」模板改写草稿，结果直接写回输入框。",
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "prompt",
+    "prompt-optimizer",
+    "prompt-engineering"
+  ],
+  "license": "MIT",
+  "author": "lklkuu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lklkuu/dsh-prompt-optimizer.git"
+  },
+  "homepage": "https://github.com/lklkuu/dsh-prompt-optimizer#readme",
+  "bugs": {
+    "url": "https://github.com/lklkuu/dsh-prompt-optimizer/issues"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "dsh": ">=0.2.2-rc.1 <1.0.0-0"
+  },
+  "scripts": {
+    "test": "node --test test/optimize.test.mjs",
+    "pack:release": "npm pack"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "CHANGELOG.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}

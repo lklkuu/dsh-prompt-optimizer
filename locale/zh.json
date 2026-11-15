@@ -1,0 +1,13 @@
+{
+  "btn.label": "优化",
+  "btn.title": "用 prompt-optimizer 的「基础优化」改写这段提示词",
+  "btn.running": "优化中…",
+  "btn.cancel": "点击取消",
+  "btn.empty": "输入框是空的，先写点东西再优化。",
+  "btn.undo": "已优化 · 撤销",
+  "btn.undoTitle": "恢复到优化前的原文",
+  "err.http": "请求失败（HTTP {status}）",
+  "err.network": "连不上本地服务：{message}",
+  "err.unknown": "优化失败：{message}",
+  "err.aborted": "已取消"
+}
