@@ -9,17 +9,21 @@
 
 ## 安装
 
+npm（推荐）：
+
 ```bash
-dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer
+dsh plugin --profile desktop add @lklkuu/dsh-prompt-optimizer
 ```
 
-或直接用本页附件（版本无关的稳定链接，推荐）：
+或直接用本页附件（版本无关的稳定链接）：
 
 ```bash
 dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/releases/latest/download/dsh-prompt-optimizer.tgz
 ```
 
 安装后重启 DSH（或刷新页面）让客户端模块加载。
+
+> 注意：npm 上的 `dsh-prompt-optimizer`（不带 scope）是**别人的同名包**，不是本插件。
 
 ## 用法
 
@@ -51,6 +55,8 @@ dsh plugin --profile desktop add https://github.com/lklkuu/dsh-prompt-optimizer/
 | `dsh-prompt-optimizer.tgz` | 版本无关，`latest/download/` 可直接引用 |
 | `dsh-prompt-optimizer-0.1.0.tgz` | 钉住本版本，内容相同 |
 
-SHA-256（`.tgz`，两者相同）：`7cf95d36ca059a7dc58fa2f4549b2fa59baa58313e7f3df25f6504a5140833ed`
+SHA-256（`.tgz`，两者相同）：`14b8fdf5f0cd6fe3dc90baf06c28e626b4c73bb2732c2d1b4526f33fe22b5751`
+
+与 npm 上 `@lklkuu/dsh-prompt-optimizer@0.1.0` 的 tarball 字节完全一致。
 
 MIT License.
