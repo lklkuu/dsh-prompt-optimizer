@@ -1,3 +1,20 @@
+# ---------------------------------------------------------------------------
+# 挂载声明：把本插件挂进 DSH 配置树
+#
+# id 与 name 的分工（这是 0.1.2 修掉的 bug）：
+#   - id   → 补丁层的行标识，必须是**简单标识符**，不能含 '@' 和 '/'。
+#            0.1.1 这里写成了完整包名，DSH 启动时报
+#            「行 id 含特殊字符, 不支持写入补丁层」，插件直接起不来。
+#   - name → 插件模块名，必须是完整包名，DSH 靠它解析模块。
+#
+# 对照全库约定，带 scope 的包都把 id 去掉 scope 前缀：
+#   @michengai/dsh-pua              → michengai-pua
+#   @michengai/dsh-agency-agents    → agency-agents
+#   @nanmicoder/dsh-agent-teams     → agent-teams
+#   @openviking/dsh-memory-plugin   → openviking-memory-runtime
+#   @wxg-prc-cpg/browser-skill-dsh-plugin → browserskill
+#   @lklkuu/dsh-prompt-optimizer    → prompt-optimizer   ← 本行
+# ---------------------------------------------------------------------------
 - insert:
-    - id: '@lklkuu/dsh-prompt-optimizer'
+    - id: prompt-optimizer
       name: '@lklkuu/dsh-prompt-optimizer'

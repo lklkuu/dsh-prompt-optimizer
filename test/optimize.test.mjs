@@ -314,3 +314,80 @@ test('client half registers one button into the composer right rail', () => {
   assert.ok(styleInserts >= 1, 'styles should be injected once')
   assert.equal(localeRegisters, 1)
 })
+
+/* ------------------------------------------------------------------ layer 4 */
+/**
+ * 补丁层（cordis.patch.yml）—— 0.1.1 的真实故障点。
+ *
+ * 0.1.1 把行 id 写成了完整包名 '@lklkuu/dsh-prompt-optimizer'。补丁层拒绝
+ * 含 '@' 和 '/' 的 id，DSH 启动时报「行 id 含特殊字符, 不支持写入补丁层」，
+ * 插件根本进不了配置树 —— 既能装上、又起不来、还卸载不掉。
+ *
+ * 前三层测试全绿也发现不了这个 bug：它们都不读补丁文件。
+ * 这层存在的唯一目的，就是让同类错误不可能再静默发布。
+ */
+
+const PATCH_URL = new URL('../cordis.patch.yml', import.meta.url)
+
+/** 只解析本文件用到的极简结构：顶层 `- insert:` 下的 `- id:` / `name:` 行。 */
+function readPatchRows() {
+  const text = readFileSync(PATCH_URL, 'utf8')
+  const rows = []
+  let current = null
+  let inInsert = false
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.trim()
+    if (!line || line.startsWith('#')) continue
+    if (/^- insert:\s*$/.test(line)) { inInsert = true; continue }
+    if (!inInsert) continue
+    const idMatch = line.match(/^-\s+id:\s*(.+)$/)
+    if (idMatch) {
+      current = { id: unquote(idMatch[1]) }
+      rows.push(current)
+      continue
+    }
+    const nameMatch = line.match(/^name:\s*(.+)$/)
+    if (nameMatch && current) current.name = unquote(nameMatch[1])
+  }
+  return rows
+}
+
+function unquote(v) {
+  const s = v.trim()
+  if ((s.startsWith("'") && s.endsWith("'")) || (s.startsWith('"') && s.endsWith('"'))) {
+    return s.slice(1, -1)
+  }
+  return s
+}
+
+test('patch file inserts at least one row', () => {
+  const rows = readPatchRows()
+  assert.ok(rows.length >= 1, 'cordis.patch.yml must insert a row')
+})
+
+test('every inserted row id is a plain identifier (no @ or /)', () => {
+  for (const row of readPatchRows()) {
+    assert.ok(row.id, 'row must have an id')
+    assert.ok(!row.id.includes('@'), `row id must not contain '@': ${row.id}`)
+    assert.ok(!row.id.includes('/'), `row id must not contain '/': ${row.id}`)
+    assert.match(row.id, /^[A-Za-z0-9][A-Za-z0-9._-]*$/,
+      `row id must be a plain identifier: ${row.id}`)
+  }
+})
+
+test('every inserted row name resolves to a module (full package name)', () => {
+  for (const row of readPatchRows()) {
+    assert.ok(row.name, `row ${row.id} must have a name`)
+    // 允许子路径（如 '/remote'），但根必须是本包名
+    assert.ok(row.name === PKG_NAME || row.name.startsWith(PKG_NAME + '/'),
+      `row name should resolve from ${PKG_NAME}, got ${row.name}`)
+  }
+})
+
+test('row id is not the raw package name when the package is scoped', () => {
+  if (!PKG_NAME.startsWith('@')) return
+  for (const row of readPatchRows()) {
+    assert.notEqual(row.id, PKG_NAME,
+      'a scoped package name is not a valid row id; strip the scope')
+  }
+})
